@@ -7,7 +7,8 @@ app = FastAPI()
 # Load the model and tokenizer
 model_name = "Praki29/q_a_generator_paragraph"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
-model = AutoModelForCausalLM.from_pretrained(model_name)
+model = AutoModelForCausalLM.from_pretrained(model_name, load_in_4bit=False)
+
 
 @app.post("/generate")
 async def generate(instruction: str, input_text: str):
